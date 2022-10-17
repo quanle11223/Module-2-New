@@ -7,18 +7,6 @@ public class Phanloaitamgiac {
 //public int c;
 
     public String checkTriangle(int a, int b, int c) {
-//        this.a = a;
-//        this.b = b;
-//        this.c = c;
-
-
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("Nhập cạnh a: ");
-//        a = scanner.nextInt();
-//        System.out.println("Nhập cạnh b: ");
-//        b = scanner.nextInt();
-//        System.out.println("Nhập cạnh c: ");
-//        c = scanner.nextInt();
 
         if ((a == 2) && (b==2) && (c == 2)){
             return "Tam giác đều";
