@@ -1,9 +1,11 @@
 package TestYTB.Tudien111.TestMaSinhVien;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class MaintestSinhVien {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         DanhsachSinhvien danhsachSinhvien = new DanhsachSinhvien();
         Scanner scanner = new Scanner(System.in);
         int luaChonSinhVien = 0;
@@ -20,10 +22,13 @@ public class MaintestSinhVien {
                             + "7. Xóa sinh viên ra khỏi danh sách(Nhập mã): \n"
                             + "8. Tìm kiếm sinh viên theo tên: \n"
                             + "9. Xuất ra danh sách sinh viên có điểm từ cao đến thấp: \n"
+                            + "10. Lưu danh sách sinh viên xuống tập tin: \n"
+                            + "11. Mở fiel danh sách sinh viên đã lưu: \n"
                             + "0. Thoát chương trình"
                             + ""
             );
-            luaChonSinhVien = scanner.nextInt(); scanner.nextLine();
+            luaChonSinhVien = scanner.nextInt();
+            scanner.nextLine();
             if (luaChonSinhVien == 1) {
                 System.out.println("Nhập mã sinh viên: ");
                 String maSinhVien = scanner.nextLine();
@@ -33,44 +38,49 @@ public class MaintestSinhVien {
                 int namSinh = scanner.nextInt();
                 System.out.println("Nhập điểm trung bình: ");
                 float diemTrungBinh1 = scanner.nextFloat();
-                SinhVien sv = new SinhVien(maSinhVien, hoVaTen, namSinh, diemTrungBinh1);
+                SinhVien sv = new SinhVien(hoVaTen, maSinhVien, namSinh, diemTrungBinh1);
                 danhsachSinhvien.addSinhVien(sv);
 
-            }
-          else if (luaChonSinhVien == 2){
-             danhsachSinhvien.printDanhSachSv();
-            }
-          else if (luaChonSinhVien == 3){
+            } else if (luaChonSinhVien == 2) {
+                danhsachSinhvien.printDanhSachSv();
+            } else if (luaChonSinhVien == 3) {
                 System.out.println("Kiểm tra danh sách rỗng là " + danhsachSinhvien.checkDanhsachSv());
-            }
-          else if (luaChonSinhVien == 4){
+            } else if (luaChonSinhVien == 4) {
                 System.out.println("Số lượng sinh viên là: " + danhsachSinhvien.laySoLuongSv());
-            }
-          else if (luaChonSinhVien == 5){
+            } else if (luaChonSinhVien == 5) {
                 danhsachSinhvien.lamTrongDanhSachSv();
-            }
-          else if (luaChonSinhVien == 6){
-                System.out.println("Nhập mã sinh viên: "); String maSinhVien = scanner.nextLine();
-                SinhVien sv = new SinhVien(maSinhVien);
-                System.out.println("Trạng thái tồn tại của sinh viên đã lưu trữ: " + danhsachSinhvien.kiemTraTonTaiSv(sv));
-            }
-          else if (luaChonSinhVien == 7){
-                System.out.println("Nhập mã sinh viên: "); String maSinhVien = scanner.nextLine();
+            } else if (luaChonSinhVien == 6) {
+                System.out.println("Nhập mã sinh viên: ");
+                String maSinhVien = scanner.nextLine();
+                System.out.println("Trạng thái tồn tại của sinh viên đã lưu trữ: " + danhsachSinhvien.kiemTraTonTaiSv(maSinhVien));
+            } else if (luaChonSinhVien == 7) {
+                System.out.println("Nhập mã sinh viên: ");
+                String maSinhVien = scanner.nextLine();
                 SinhVien sv = new SinhVien(maSinhVien);
                 danhsachSinhvien.xoaMotSinhVien(sv);
-            }
-          else if (luaChonSinhVien == 8){
-                System.out.println("Nhập tên: " ); String tenSinhvien = scanner.nextLine();
+            } else if (luaChonSinhVien == 8) {
+                System.out.println("Nhập tên: ");
+                String tenSinhvien = scanner.nextLine();
                 System.out.println("Kết quả tìm kiếm: ");
                 danhsachSinhvien.timSvTheoTen(tenSinhvien);
-            }
-          else if (luaChonSinhVien == 9){
+            } else if (luaChonSinhVien == 9) {
                 danhsachSinhvien.sapXepSinhVien();
-               danhsachSinhvien.printDanhSachSv();
+                danhsachSinhvien.printDanhSachSv();
+            } else if (luaChonSinhVien == 10) {
+                System.out.println("Nhập tên file: ");
+                String tenFile = scanner.nextLine();
+                File f = new File(tenFile);
+                danhsachSinhvien.luuSinhVienVaoFile(scanner);
+            } else if (luaChonSinhVien == 11) {
+                System.out.println("Nhập tên file: ");
+                String tenFile1 = scanner.nextLine();
+                File f1 = new File(tenFile1);
+                danhsachSinhvien.readSinhVienTuFile(f1);
             }
 
-        }while (luaChonSinhVien != 0);
-        if (luaChonSinhVien == 0){
-            System.exit(0);}
+        } while (luaChonSinhVien != 0);
+        if (luaChonSinhVien == 0) {
+            System.exit(0);
         }
     }
+}

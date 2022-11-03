@@ -1,6 +1,9 @@
 package TestYTB.Tudien111.TestMaSinhVien;
 
-public class SinhVien implements Comparable<SinhVien>{
+import java.io.Serializable;
+import java.util.Objects;
+
+public class SinhVien implements Comparable<SinhVien>, Serializable {
     public String name;
     public String idSv;
     public int namSinh;
@@ -14,6 +17,8 @@ public class SinhVien implements Comparable<SinhVien>{
         this.idSv = idSv;
         this.namSinh = namSinh;
         this.diemTb = diemTb;
+
+
     }
 
     public String getName() {
@@ -61,5 +66,19 @@ public class SinhVien implements Comparable<SinhVien>{
     @Override
     public int compareTo(SinhVien o) {
         return this.idSv.compareTo(idSv);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SinhVien sinhVien = (SinhVien) o;
+        return namSinh == sinhVien.namSinh && Float.compare(sinhVien.diemTb, diemTb) == 0
+                && name.equals(sinhVien.name) && idSv.equals(sinhVien.idSv);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, idSv, namSinh, diemTb);
     }
 }
